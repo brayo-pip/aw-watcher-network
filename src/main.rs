@@ -17,14 +17,14 @@ fn get_config_path() -> Option<std::path::PathBuf> {
 async fn create_bucket(aw_client: &AwClient) -> Result<(), Box<dyn std::error::Error>> {
     let res = aw_client
         .create_bucket(&Bucket {
-            id: "aw-watcher-lastfm".to_string(),
+            id: "aw-watcher-network".to_string(),
             bid: None,
             _type: "currently-playing".to_string(),
             data: Map::new(),
             metadata: Default::default(),
             last_updated: None,
             hostname: "".to_string(),
-            client: "aw-watcher-lastfm-rust".to_string(),
+            client: "aw-watcher-network".to_string(),
             created: None,
             events: None,
         })
