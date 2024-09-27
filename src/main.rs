@@ -1,10 +1,11 @@
 use aw_client_rust::AwClient;
 use aw_models::{Bucket, Event};
-use wifilocate;
 use dirs::config_dir;
 use log::{info, warn};
 use serde_json::{Map, Value};
-
+use std::time::Duration;
+use tokio::time::interval;
+use wifilocate;
 
 fn get_config_path() -> Option<std::path::PathBuf> {
     config_dir().map(|mut path| {
@@ -29,15 +30,15 @@ async fn create_bucket(aw_client: &AwClient) -> Result<(), Box<dyn std::error::E
             events: None,
         })
         .await;
-    if res.is_err() {
-        warn!("Error creating bucket: {:?}", res.err());
-    }
     Ok(())
 }
 
 #[tokio::main]
-async fn main(){
-    println!( "{:?}",
-        wifilocate::get_location(wifilocate::get_networks()).await.ok()
-     );
+async fn main() {
+    println!(
+        "{:?}",
+        wifilocate::get_location(wifilocate::get_networks())
+            .await
+            .ok()
+    );
 }
