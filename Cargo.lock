@@ -637,9 +637,9 @@ checksum = "8f518f335dce6725a761382244631d86cf0ccb2863413590b31338feb467f9c3"
 
 [[package]]
 name = "itertools"
-version = "0.8.2"
+version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f56a2d0bc861f9165be4eb3442afd3c236d8a98afd426f65d92324ae1091a484"
+checksum = "413ee7dfc52ee1a4949ceeb7dbc8a33f2d6c088194d9f922fb8318faf1f01186"
 dependencies = [
  "either",
 ]
@@ -1684,10 +1684,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "wifilocate"
-version = "0.1.1"
+name = "wifi_scanner"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09b7383b01e820095a0b7fd4efcd39e64e1009895d9df2b95f59458cdffdb256"
+checksum = "8d6306c7a695aa3227adc4cb1e8d470969d824f69747c2d38d6b834325c0c125"
+dependencies = [
+ "itertools",
+ "regex",
+]
+
+[[package]]
+name = "wifilocate"
+version = "0.1.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "649f02e7447a1e60c70cdfa288f7a8d00fe7fc8cd4811a2e6402c87d742004d9"
 dependencies = [
  "dirs",
  "reqwest 0.12.7",
@@ -1695,17 +1705,7 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "tokio",
- "wifiscanner",
-]
-
-[[package]]
-name = "wifiscanner"
-version = "0.5.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d74e667d34abc74f1e5b509ae3d24641f56514ba2c5a64f9d733ae2061aef856"
-dependencies = [
- "itertools",
- "regex",
+ "wifi_scanner",
 ]
 
 [[package]]

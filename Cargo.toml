@@ -10,4 +10,4 @@ dirs = "5.0.1"
 log = "0.4.21"
 serde_json = "1.0"
 tokio = { version = "1", features = ["full"] }
-wifilocate = "0.1.1"
+wifilocate = "0.1.4"
