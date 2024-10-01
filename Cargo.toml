@@ -6,8 +6,12 @@ edition = "2021"
 [dependencies]
 aw-client-rust = { git = "https://github.com/ActivityWatch/aw-server-rust.git", branch = "master" }
 aw-models = { git = "https://github.com/ActivityWatch/aw-server-rust.git", branch = "master" }
+chrono = "0.4.38"
 dirs = "5.0.1"
-log = "0.4.21"
-serde_json = "1.0"
-tokio = { version = "1", features = ["full"] }
-wifilocate = "0.1.4"
+env_logger = "0.11.5"
+log = "0.4.22"
+reqwest = { version = "0.12.4" }
+serde_json = "1.0.128"
+tokio = { version = "1.40", features = ["full"] }
+toml = "0.8.19"
+wifilocate = "0.1.7"
