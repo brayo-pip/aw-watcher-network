@@ -1839,6 +1839,8 @@ dependencies = [
 [[package]]
 name = "wifilocate"
 version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d01de2e4926045a5d23841c598811e19c654b539bdb73685c9db3e3c81dd9fec"
 dependencies = [
  "dirs",
  "reqwest 0.12.7",
