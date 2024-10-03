@@ -114,7 +114,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let mut data = Map::new();
                 let first_gps_address = gps_addresses.first().expect("Locations is empty");
 
-                // format the string to be in the format "longitude,latitude"
                 let location = format!(
                     "{},{}",
                     first_gps_address.gps_location.location.lng,
@@ -123,6 +122,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
                 let address = first_gps_address.address.clone();
 
+                data.insert("online".to_string(), Value::Bool(true));
                 data.insert("location".to_string(), Value::String(location));
                 data.insert("address".to_string(), Value::String(address));
                 let event = Event {
@@ -139,7 +139,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     });
             }
             Err(e) => {
-                warn!("Error getting locations/addresses: {:?}", e);
+                if e.to_string().contains("No location found") {
+                    let mut data = Map::new();
+                    data.insert("online".to_string(), Value::Bool(false));
+                    let event = Event {
+                        id: None,
+                        timestamp: Utc::now(),
+                        duration: TimeDelta::seconds(polling_interval as i64),
+                        data,
+                    };
+                    aw_client
+                        .heartbeat("aw-watcher-network", &event, polling_interval as f64)
+                        .await
+                        .unwrap_or_else(|e| {
+                            warn!("Error sending heartbeat: {:?}", e);
+                        });
+                } else {
+                    warn!("Error getting location: {:?}", e);
+                }
             }
         }
     }
